@@ -1,0 +1,45 @@
+1) First go to Netbeans and create new project
+2) Then add (MySQL JDBC Driver) into "Libraries"  by right click and "Add lib"
+3) Select MySQL JDBC Driver in the list
+4) create two JFrame form for loginpage and menupage
+5) Install apache + mysql
+6) Check the localhost:?? (?? --> 80 or something) by clicking the config "httpd.conf"
+7) goto chrome and write localhost/dashboard
+8) Select PHPMYADMIN on navbar
+9) create database
+10) create table 
+11) insert any value in username and password
+12) come to netbeans loginpage drag and drop all 2 fields and button
+13) goto actionevent of button
+14) import java.mysql.*;
+
+
+15) Write the code
+String user = un.getText();
+        String pa =pass.getText();
+        
+        try{
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/java","root","");
+        Statement stmt= con.createStatement();
+        ResultSet rs= stmt.executeQuery("select * from username");
+        while(rs.next()){
+            String username = rs.getString("user");
+            String password = rs.getString("pa");
+            
+            if(user.equals(username) && pa.equals(password)){
+                
+                menupage obj= new menupage();
+                obj.setVisible(true);
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Username or password is incorrect!");
+            }
+        }
+         
+        con.close();
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
